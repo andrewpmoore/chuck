@@ -10,6 +10,9 @@ import 'package:dio/dio.dart';
 class JokesApiDio implements JokesApi {
   final Dio _dio = Dio();
 
+
+  //todo could add checking for network connectivity before making the call as an improvement to these methods
+
   @override
   Future<Result<Joke, Exception>> getRandomJoke({String? category}) async {
       try {

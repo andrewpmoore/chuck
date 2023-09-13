@@ -20,6 +20,8 @@ dependencies:
   widget_and_text_animator: ^1.1.5 # used for animations - I'm the author of the package :P
   lucide_icons: ^0.257.0 # nice icon set
   intl: ^0.18.1
+  google_fonts: ^5.1.0
+
 
 dev_dependencies:
   flutter_test:
