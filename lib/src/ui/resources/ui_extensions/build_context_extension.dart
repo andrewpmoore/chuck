@@ -33,6 +33,7 @@ extension BuildContextExtensions on BuildContext {
     return MediaQuery.of(this).size.width > mediumSize;
   }
 
+  /// return a `ScreenSize` for handling size logic
   ScreenSize getScreenSize(){
     if (isCompactScreen()){
       return ScreenSize.compact;

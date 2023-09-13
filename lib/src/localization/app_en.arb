@@ -1,8 +1,4 @@
 {
-  "appTitle": "chuck",
-  "@appTitle": {
-    "description": "The title of the application"
-  },
   "homeTitle": "Chuck Norris jokes",
     "@homeTitle": {
       "description": "The main app bar title"
