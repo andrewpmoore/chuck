@@ -7,39 +7,39 @@ import 'package:chuck/src/services/api/result.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
-class RandomJokeProvider extends ChangeNotifier {
+class JokeProvider extends ChangeNotifier {
   bool _busy = false;
-
   set busy(bool value) {
     _busy = value;
     notifyListeners();
   }
-
   bool get busy => _busy;
 
   Joke? _joke;
-
   Joke? get joke => _joke;
 
   set joke(Joke? value) {
     _joke = value;
     notifyListeners();
+    print('setting joke here ${_joke?.value}');
   }
 
   /// FetchAJoke
   /// This fetches a jokes from the api and either sets the joke or a fake joke if there's a failure
-  Future<void> fetchAJoke() async {
+  Future<void> fetchAJoke({String? category}) async {
+    print('1');
     busy = true;
     final JokesApi chuckNorrisApi = JokesApiDio();
-    final result = await chuckNorrisApi.getRandomJoke();
+    print('1a $category');
+    final result = await chuckNorrisApi.getRandomJoke(category: category);
     busy = false;
+    print('2');
     final value = switch (result) {
       Success(value: final jokeResult) => joke = jokeResult,
       Failure(exception: final exception) => _handleFailure(exception),
     };
-    if (kDebugMode) {
-      print('fetchAJoke $value');
-    }
+    print('joke result ${joke?.value??'xx'}');
+
   }
 
   /// Handle the failure by setting a fake joke to replace the real one

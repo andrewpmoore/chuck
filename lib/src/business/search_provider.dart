@@ -1,10 +1,10 @@
-import 'package:chuck/src/models/joke_search_results.dart';
+import 'package:chuck/src/models/search_results.dart';
 import 'package:chuck/src/services/api/dio/jokes_api_dio.dart';
 import 'package:chuck/src/services/api/jokes_api.dart';
 import 'package:chuck/src/services/api/result.dart';
 import 'package:flutter/foundation.dart';
 
-class JokeSearchProvider extends ChangeNotifier {
+class SearchProvider extends ChangeNotifier {
   bool _searchPerformed = false; //used to hold whether a search has been run yet, if not, we won't show 'no results found'
   bool get searchPerformed => _searchPerformed;
 
@@ -22,11 +22,11 @@ class JokeSearchProvider extends ChangeNotifier {
 
   bool get busy => _busy;
 
-  JokeSearchResults? _jokeSearchResults;
+  SearchResults? _jokeSearchResults;
 
-  JokeSearchResults? get jokeSearchResults => _jokeSearchResults;
+  SearchResults? get jokeSearchResults => _jokeSearchResults;
 
-  set jokeSearchResults(JokeSearchResults? value) {
+  set jokeSearchResults(SearchResults? value) {
     _jokeSearchResults = value;
     notifyListeners();
   }
@@ -43,6 +43,7 @@ class JokeSearchProvider extends ChangeNotifier {
   /// SearchForAJoke
   /// This searches for jokes from the api and either sets the results or an error message if there's a failure
   Future<void> jokeSearch(String searchString) async {
+    _searchPerformed = true; //at least one search has now been performed
     if (searchString.length < 3) {
       //this would probably be a separate validation method if things were more complicated
       errorMessage = 'Search must be longer than 2 characters';
@@ -53,14 +54,11 @@ class JokeSearchProvider extends ChangeNotifier {
       final JokesApi chuckNorrisApi = JokesApiDio();
       final result = await chuckNorrisApi.getSearchJokeResults(searchString: searchString);
       busy = false;
-      _searchPerformed = true; //at least one search has now been performed
       final value = switch (result) {
         Success(value: final jokeQueryResult) => jokeSearchResults = jokeQueryResult,
         Failure(exception: final exception) => _handleFailure(exception),
       };
-      if (kDebugMode) {
-        print('jokeSearch $value');
-      }
+
     }
   }
 
