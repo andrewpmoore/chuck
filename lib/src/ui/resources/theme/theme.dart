@@ -43,7 +43,7 @@ TextTheme textThemeDark = TextTheme(
 
 const lightColorScheme = ColorScheme(
   brightness: Brightness.light,
-  primary: Color(0xFF2F51D5),
+  primary: Color(0xFF3474ef),
   onPrimary: Color(0xFFccccff),
   primaryContainer: Color(0xFFDDE1FF),
   onPrimaryContainer: Color(0xFF001356),
