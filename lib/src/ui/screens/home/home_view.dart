@@ -43,6 +43,7 @@ class _HomeViewState extends State<HomeView> {
         bottomNavigationBar: NavigationBar(
           onDestinationSelected: (int index) {
             setState(() {
+              //set the current index page and refresh state
               currentPageIndex = index;
             });
           },

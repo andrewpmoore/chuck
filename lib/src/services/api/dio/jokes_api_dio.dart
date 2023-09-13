@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:chuck/src/models/joke.dart';
 import 'package:chuck/src/models/joke_categories.dart';
@@ -21,11 +22,12 @@ class JokesApiDio implements JokesApi {
         final response = await _dio.get(url);
         switch (response.statusCode){
           case 200:
-            final data = json.decode(response.data);
-            return Success(Joke.fromRawJson(data));
+            return Success(Joke.fromJson(response.data));
           default:
             return Failure(Exception(response.statusMessage));
         }
+      } on DioException catch (e) {
+        return Failure(e);
       } on Exception catch (e) {
         return Failure(e);
       }
@@ -39,8 +41,7 @@ class JokesApiDio implements JokesApi {
       final response = await _dio.get(url);
       switch (response.statusCode){
         case 200:
-          final data = json.decode(response.data);
-          return Success(JokeSearchResults.fromRawJson(data));
+          return Success(JokeSearchResults.fromJson(response.data));
         default:
           return Failure(Exception(response.statusMessage));
       }
