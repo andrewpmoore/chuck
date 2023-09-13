@@ -84,7 +84,7 @@ class MyApp extends StatelessWidget {
                   case SettingsView.routeName:
                     return SettingsView(controller: settingsController);
                   default:
-                    return HomeView();
+                    return const HomeView();
                 }
               },
             );

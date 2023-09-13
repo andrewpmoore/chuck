@@ -13,6 +13,8 @@ class HomeView extends StatefulWidget {
 
   static const routeName = '/';
 
+  const HomeView({super.key});
+
   @override
   State<HomeView> createState() => _HomeViewState();
 }
@@ -29,6 +31,7 @@ class _HomeViewState extends State<HomeView> {
         title: Text(context.loc!.homeTitle),
         actions: [
           IconButton(
+            tooltip: context.loc!.settings,
             icon: const Icon(LucideIcons.settings2),
             onPressed: () {
               // Navigate to the settings page. If the user leaves and returns

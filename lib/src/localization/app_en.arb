@@ -11,6 +11,10 @@
     "@random": {
       "description": "Screen navigation for showing random joke"
   },
+  "settings": "Settings",
+    "@settings": {
+      "description": "Application settings"
+  },
   "random": "Random joke",
     "@random": {
       "description": "Screen navigation for showing random joke"
@@ -19,6 +23,14 @@
     "@search": {
       "description": "Screen navigation for showing the joke search screen"
   },
+  "searchPrompt": "Search for jokes",
+    "@searchPrompt": {
+      "description": "Text field prompt to search for jokes"
+  },
+  "noResultsFound": "No jokes found",
+      "@noResultsFound": {
+        "description": "Message for when jokes are searched, but no results are found"
+    },
   "categories": "Categories",
     "@categories": {
      "description": "Screen navigation for showing the joke categories screen"

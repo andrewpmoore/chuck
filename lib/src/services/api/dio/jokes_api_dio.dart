@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:chuck/src/models/joke.dart';
 import 'package:chuck/src/models/joke_categories.dart';
 import 'package:chuck/src/models/joke_search_results.dart';
