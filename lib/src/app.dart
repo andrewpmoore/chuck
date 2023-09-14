@@ -44,6 +44,7 @@ class MyApp extends StatelessWidget {
           ],
           supportedLocales: AppLocalizations.supportedLocales,
 
+          debugShowCheckedModeBanner: false,
 
           // Use AppLocalizations to configure the correct application title
           // depending on the user's locale.

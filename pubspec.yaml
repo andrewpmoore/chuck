@@ -1,5 +1,5 @@
-name: chuck_jokes
-description: Chuck norris joke generator for Thrive code test.
+name: chuck
+description: Chuck norris joke generator same app
 
 # Prevent accidental publishing to pub.dev.
 publish_to: 'none'
