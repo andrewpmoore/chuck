@@ -51,7 +51,7 @@ void main() {
 
     test('fetch a joke for a specific category, getting back a successful response', () async {
       // mock the random joke api and return a success response
-      dioAdapter.onGet('https://api.chucknorris.io/jokes/random?query=dev',(server) async => server.reply(200, jsonDecode(await rootBundle.loadString('assets/mocks/random_success_category_dev.json'))),);
+      dioAdapter.onGet('https://api.chucknorris.io/jokes/random?category=dev',(server) async => server.reply(200, jsonDecode(await rootBundle.loadString('assets/mocks/random_success_category_dev.json'))),);
 
       JokeProvider jokeProvider = JokeProvider(JokesApiDio(dio));
       await jokeProvider.fetchAJoke(category: 'dev');
@@ -65,7 +65,7 @@ void main() {
 
     test('fetch a joke for a specific category, getting back a failure response', () async {
       // mock the random joke api and return a failure
-      dioAdapter.onGet('https://api.chucknorris.io/jokes/random?query=dev',(server) async => server.reply(500, null),);
+      dioAdapter.onGet('https://api.chucknorris.io/jokes/random?category=dev',(server) async => server.reply(500, null),);
 
       JokeProvider jokeProvider = JokeProvider(JokesApiDio(dio));
       await jokeProvider.fetchAJoke(category: 'dev');
