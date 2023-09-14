@@ -1,3 +1,4 @@
+import 'package:chuck/main.dart';
 import 'package:chuck/src/business/search_provider.dart';
 import 'package:chuck/src/ui/resources/ui_constants.dart';
 import 'package:chuck/src/ui/resources/ui_extensions/build_context_extension.dart';
@@ -11,7 +12,7 @@ class JokeSearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => SearchProvider(),
+      create: (context) => SearchProvider(jokesApi),
       child: _JokeSearch(),
     );
   }

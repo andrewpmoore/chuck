@@ -1,3 +1,4 @@
+import 'package:chuck/main.dart';
 import 'package:chuck/src/business/category_provider.dart';
 import 'package:chuck/src/business/joke_provider.dart';
 import 'package:chuck/src/models/joke.dart';
@@ -16,10 +17,10 @@ class JokeCategoryScreen extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (context) => CategoryProvider(),
+          create: (context) => CategoryProvider(jokesApi),
         ),
         ChangeNotifierProvider(
-          create: (context) => JokeProvider(),
+          create: (context) => JokeProvider(jokesApi),
         ),
       ],
       child: const _JokeCategories(),

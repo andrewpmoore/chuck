@@ -1,3 +1,4 @@
+import 'package:chuck/main.dart';
 import 'package:chuck/src/business/joke_provider.dart';
 import 'package:chuck/src/models/joke.dart';
 import 'package:chuck/src/ui/resources/ui_constants.dart';
@@ -14,7 +15,7 @@ class RandomJokeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => JokeProvider(),
+      create: (context) => JokeProvider(jokesApi),
       child: const _RandomJoke(),
     );
   }

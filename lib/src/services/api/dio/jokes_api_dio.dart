@@ -1,12 +1,15 @@
 import 'package:chuck/src/models/joke.dart';
 import 'package:chuck/src/models/categories.dart';
 import 'package:chuck/src/models/search_results.dart';
-import 'package:chuck/src/services/api/jokes_api.dart';
+import 'package:chuck/src/services/api/jokes_api_interface.dart';
 import 'package:chuck/src/services/api/result.dart';
 import 'package:dio/dio.dart';
 
 class JokesApiDio implements JokesApi {
-  final Dio _dio = Dio();
+
+  JokesApiDio(this._dio);
+
+  final Dio _dio;
 
 
   //todo could add checking for network connectivity before making the call as an improvement to these methods
@@ -15,7 +18,7 @@ class JokesApiDio implements JokesApi {
   Future<Result<Joke, Exception>> getRandomJoke({String? category}) async {
       try {
         //if a category has been supplied then append it to the url, otherwise just make the call to 'random' without any query parameters
-        String url = 'https://api.chucknorris.io/jokes/random${category!=null?'?query{$category}':''}';
+        String url = 'https://api.chucknorris.io/jokes/random${category!=null?'?query=$category':''}';
         final response = await _dio.get(url);
         switch (response.statusCode){
           case 200:

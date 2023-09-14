@@ -21,6 +21,7 @@ dependencies:
   lucide_icons: ^0.257.0 # nice icon set
   intl: ^0.18.1  # for internationalisation
   google_fonts: ^5.1.0 # for dynamically loading different fonts
+  http_mock_adapter: ^0.6.0
 
 
 dev_dependencies:
@@ -38,7 +39,8 @@ flutter:
   assets:
     # Add assets from the images directory to the application.
     - assets/images/
-
+    # Add the unit test mock api responses
+    - assets/mocks/
 
 flutter_intl:
   enabled: true
