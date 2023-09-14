@@ -13,6 +13,7 @@ class JokeDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     String jokeText = joke?.value??'';
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: Sizes.p16),
@@ -22,7 +23,7 @@ class JokeDisplay extends StatelessWidget {
         characterDelay: (jokeText).length > 100 ? const Duration(milliseconds: 5) : const Duration(milliseconds: 20),
         spaceDelay: (jokeText).length > 100 ? const Duration(milliseconds: 10) : const Duration(milliseconds: 40),
         jokeText,
-        style: context.style.titleLarge!.copyWith(color: joke?.isFake??false ? context.colorScheme.error : null),
+        style: context.style.titleLarge!.copyWith(color: joke?.isFake??false ? context.colorScheme.error : null), //if the joke is a 'fake/error' joke, then change the text color
         textAlign: TextAlign.center,
       ),
     );

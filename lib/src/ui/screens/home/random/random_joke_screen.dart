@@ -46,7 +46,7 @@ class _RandomJoke extends StatelessWidget {
             ],
           ),
           gapH16,
-          JokeDisplay(joke: joke, key: ValueKey('${joke?.value??''}_${context.isAppInDarkMode}'),)
+          context.watch<JokeProvider>().busy ? const CircularProgressIndicator.adaptive() : JokeDisplay(joke: joke, key: ValueKey('${joke?.value??''}_${context.isAppInDarkMode}'),)
         ],
       ),
     );
