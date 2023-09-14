@@ -27,19 +27,14 @@ class JokeProvider extends ChangeNotifier {
   /// FetchAJoke
   /// This fetches a jokes from the api and either sets the joke or a fake joke if there's a failure
   Future<void> fetchAJoke({String? category}) async {
-    print('1');
     busy = true;
     final JokesApi chuckNorrisApi = JokesApiDio();
-    print('1a $category');
     final result = await chuckNorrisApi.getRandomJoke(category: category);
     busy = false;
-    print('2');
     final value = switch (result) {
       Success(value: final jokeResult) => joke = jokeResult,
       Failure(exception: final exception) => _handleFailure(exception),
     };
-    print('joke result ${joke?.value??'xx'}');
-
   }
 
   /// Handle the failure by setting a fake joke to replace the real one
@@ -53,10 +48,10 @@ class JokeProvider extends ChangeNotifier {
     //now check the types to determine the fake joke to show
     if ((exception is DioException) && (exception).error is SocketException) {
       //set a fake joke due to not having a connection
-      joke = Joke(value: "It's not Chuck Norris, it's you! Chuck never fails");
+      joke = Joke(value: "It's not Chuck Norris, it's you! Chuck never fails", isFake: true);
     } else {
       //set a fake joke due to the api call not working
-      joke = Joke(value: 'There seems to have been a system failure, Chuck Norris dares you to try again!');
+      joke = Joke(value: 'There seems to have been a system failure, Chuck Norris dares you to try again!', isFake: true);
     }
   }
 }

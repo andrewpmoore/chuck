@@ -1,9 +1,11 @@
 import 'package:chuck/src/business/joke_provider.dart';
+import 'package:chuck/src/models/joke.dart';
 import 'package:chuck/src/ui/resources/ui_constants.dart';
 import 'package:chuck/src/ui/resources/ui_extensions/build_context_extension.dart';
 import 'package:chuck/src/ui/widgets/joke_display.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 
 
 class RandomJokeScreen extends StatelessWidget {
@@ -24,6 +26,7 @@ class _RandomJoke extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Joke? joke = context.watch<JokeProvider>().joke;
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -31,19 +34,19 @@ class _RandomJoke extends StatelessWidget {
           Row(
             children: [
               const Expanded(child: SizedBox()),
-              ElevatedButton(
-                  onPressed: () async {
-                    context.read<JokeProvider>().fetchAJoke();
-                  },
-                  child: Text(context.loc!.random)),
+              WidgetAnimator(
+                incomingEffect: WidgetTransitionEffects.incomingSlideInFromBottom(),
+                child: ElevatedButton(
+                    onPressed: () async {
+                      context.read<JokeProvider>().fetchAJoke();
+                    },
+                    child: Text(context.loc!.random)),
+              ),
               const Expanded(child: SizedBox()),
             ],
           ),
           gapH16,
-          context.watch<JokeProvider>().busy ? const CircularProgressIndicator.adaptive() : Padding(
-            padding: const EdgeInsets.symmetric(horizontal: Sizes.p16),
-            child: JokeDisplay(jokeText: context.watch<JokeProvider>().joke?.value??''),
-          )
+          JokeDisplay(joke: joke, key: ValueKey('${joke?.value??''}_${context.isAppInDarkMode}'),)
         ],
       ),
     );

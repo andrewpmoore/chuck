@@ -2,6 +2,7 @@ import 'package:chuck/src/business/category_provider.dart';
 import 'package:chuck/src/business/joke_provider.dart';
 import 'package:chuck/src/models/joke.dart';
 import 'package:chuck/src/ui/resources/ui_constants.dart';
+import 'package:chuck/src/ui/resources/ui_extensions/build_context_extension.dart';
 import 'package:chuck/src/ui/resources/ui_extensions/string_extensions.dart';
 import 'package:chuck/src/ui/widgets/joke_display.dart';
 import 'package:flutter/material.dart';
@@ -112,8 +113,14 @@ class _JokeDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool busy = context.watch<JokeProvider>().busy;
     Joke? joke = context.watch<JokeProvider>().joke;
-    return JokeDisplay(jokeText: joke?.value??'', key: ValueKey(joke?.value??''),);
+    if (busy){
+      return const Center(child: CircularProgressIndicator.adaptive(),);
+    }
+    else {
+      return JokeDisplay(joke: joke, key: ValueKey('${joke?.value ?? ''}_${context.isAppInDarkMode}'),);
+    }
 
   }
 }

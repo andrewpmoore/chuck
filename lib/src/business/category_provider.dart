@@ -1,11 +1,7 @@
-import 'dart:io';
-
-import 'package:chuck/src/models/joke.dart';
 import 'package:chuck/src/models/categories.dart';
 import 'package:chuck/src/services/api/dio/jokes_api_dio.dart';
 import 'package:chuck/src/services/api/jokes_api.dart';
 import 'package:chuck/src/services/api/result.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
 class CategoryProvider extends ChangeNotifier {

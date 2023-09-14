@@ -12,6 +12,7 @@ class Joke {
   DateTime? updatedAt;
   String? url;
   String? value;
+  bool isFake;
 
   Joke({
     this.categories,
@@ -21,6 +22,7 @@ class Joke {
     this.updatedAt,
     this.url,
     this.value,
+    this.isFake = false,
   });
 
   Joke copyWith({
@@ -31,6 +33,7 @@ class Joke {
     DateTime? updatedAt,
     String? url,
     String? value,
+    required bool isFake,
   }) =>
       Joke(
         categories: categories ?? this.categories,
@@ -40,6 +43,7 @@ class Joke {
         updatedAt: updatedAt ?? this.updatedAt,
         url: url ?? this.url,
         value: value ?? this.value,
+        isFake: isFake,
       );
 
   factory Joke.fromRawJson(String str) => Joke.fromJson(json.decode(str));
