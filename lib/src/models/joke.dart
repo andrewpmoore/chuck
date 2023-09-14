@@ -12,7 +12,7 @@ class Joke {
   DateTime? updatedAt;
   String? url;
   String? value;
-  bool isFake;
+  bool isFake;  //added 'isFake' for the messages shown when there's a server error or you are offline
 
   Joke({
     this.categories,

@@ -1,15 +1,10 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:chuck/src/business/category_provider.dart';
-import 'package:chuck/src/business/joke_provider.dart';
-import 'package:chuck/src/business/search_provider.dart';
-import 'package:chuck/src/models/joke.dart';
-import 'package:chuck/src/models/search_results.dart';
 import 'package:chuck/src/services/api/dio/jokes_api_dio.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:dio/dio.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 
 

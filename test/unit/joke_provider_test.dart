@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:chuck/src/business/joke_provider.dart';
 import 'package:chuck/src/models/joke.dart';
