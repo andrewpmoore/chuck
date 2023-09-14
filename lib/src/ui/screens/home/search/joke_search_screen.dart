@@ -17,11 +17,8 @@ class JokeSearchScreen extends StatelessWidget {
   }
 }
 
-
-
 /// basic structure of search page with the search field at the top and the results at the bottom
 class _JokeSearch extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return const Column(
@@ -35,7 +32,6 @@ class _JokeSearch extends StatelessWidget {
   }
 }
 
-
 class _SearchFieldView extends StatefulWidget {
   const _SearchFieldView({Key? key}) : super(key: key);
 
@@ -44,9 +40,7 @@ class _SearchFieldView extends StatefulWidget {
 }
 
 class _SearchFieldViewState extends State<_SearchFieldView> {
-
   TextEditingController textEditingController = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +59,7 @@ class _SearchFieldViewState extends State<_SearchFieldView> {
             decoration: InputDecoration(
               hintText: context.loc!.searchPrompt,
               filled: true,
-              counterText:  '',
+              counterText: '',
               contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
               // prefixIcon: const Icon(
               //   LucideIcons.search,
@@ -82,9 +76,15 @@ class _SearchFieldViewState extends State<_SearchFieldView> {
             ),
           ),
         ),
-        FloatingActionButton(onPressed: (){
-          _performSearch();
-        }, mini: true, tooltip: context.loc!.search, elevation: 0, child: const Icon(LucideIcons.search),),
+        FloatingActionButton(
+          onPressed: () {
+            _performSearch();
+          },
+          mini: true,
+          tooltip: context.loc!.search,
+          elevation: 0,
+          child: const Icon(LucideIcons.search),
+        ),
         gapW16,
       ],
     );
@@ -100,7 +100,6 @@ class _SearchFieldViewState extends State<_SearchFieldView> {
   void hideKeyboard(BuildContext context) {
     FocusScope.of(context).requestFocus(FocusNode());
   }
-
 }
 
 class _SearchResults extends StatefulWidget {
@@ -115,28 +114,31 @@ class _SearchResultsState extends State<_SearchResults> {
   Widget build(BuildContext context) {
     // return context.read<JokeSearchProvider>().busy ? const Center(child: CircularProgressIndicator.adaptive(),) : const Text('results here');
     SearchProvider provider = Provider.of<SearchProvider>(context);
-    if (provider.busy){
+    if (provider.busy) {
       return const Center(child: CircularProgressIndicator.adaptive());
-    } else if (!provider.searchPerformed){
+    } else if (!provider.searchPerformed) {
       return const SizedBox();
-    } else if (provider.searchPerformed&&provider.jokeSearchResults?.total==0){
-      return Text(context.loc!.noResultsFound);
     } else if (provider.errorMessage.isNotEmpty) {
       return Text(provider.errorMessage);
-    }
-    else{
+    } else if (provider.searchPerformed && provider.jokeSearchResults?.total == 0) {
+      return Text(context.loc!.noResultsFound);
+    } else {
       return Expanded(
         child: ListView.builder(
-            itemCount: provider.jokeSearchResults?.total??0,
-            itemBuilder: (context, index){
-              return ListTile(title: Text(provider.jokeSearchResults!.result![index].value??'', style: context.style.bodyMedium,),
-              leading: Text('${index+1}.', style: context.style.bodyMedium,),
+            itemCount: provider.jokeSearchResults?.total ?? 0,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(
+                  provider.jokeSearchResults!.result![index].value ?? '',
+                  style: context.style.bodyMedium,
+                ),
+                leading: Text(
+                  '${index + 1}.',
+                  style: context.style.bodyMedium,
+                ),
               );
             }),
       );
     }
-
-
   }
 }
-

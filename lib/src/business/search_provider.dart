@@ -43,8 +43,10 @@ class SearchProvider extends ChangeNotifier {
   /// SearchForAJoke
   /// This searches for jokes from the api and either sets the results or an error message if there's a failure
   Future<void> jokeSearch(String searchString) async {
+    print('1');
     _searchPerformed = true; //at least one search has now been performed
     if (searchString.length < 3) {
+      print('2');
       //this would probably be a separate validation method if things were more complicated
       errorMessage = 'Search must be longer than 2 characters';
     } else {
