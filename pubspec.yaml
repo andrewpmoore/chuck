@@ -1,4 +1,4 @@
-name: chuck
+name: chuck_jokes
 description: Chuck norris joke generator for Thrive code test.
 
 # Prevent accidental publishing to pub.dev.
