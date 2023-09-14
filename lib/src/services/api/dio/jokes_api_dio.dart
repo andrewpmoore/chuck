@@ -18,7 +18,7 @@ class JokesApiDio implements JokesApi {
   Future<Result<Joke, Exception>> getRandomJoke({String? category}) async {
       try {
         //if a category has been supplied then append it to the url, otherwise just make the call to 'random' without any query parameters
-        String url = 'https://api.chucknorris.io/jokes/random${category!=null?'?query=$category':''}';
+        String url = 'https://api.chucknorris.io/jokes/random${category!=null?'?category=$category':''}';
         final response = await _dio.get(url);
         switch (response.statusCode){
           case 200:
