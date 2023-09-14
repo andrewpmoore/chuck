@@ -1,4 +1,4 @@
-import 'package:chuck/src/ui/screens/settings/settings_service.dart';
+import 'package:chuck/src/services/settings_service.dart';
 import 'package:flutter/material.dart';
 
 
@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 ///
 /// Controllers glue Data Services to Flutter Widgets. The SettingsController
 /// uses the SettingsService to store and retrieve user settings.
-class SettingsController with ChangeNotifier {
-  SettingsController(this._settingsService);
+class SettingsProvider with ChangeNotifier {
+  SettingsProvider(this._settingsService);
 
   // Make SettingsService a private variable so it is not used directly.
   final SettingsService _settingsService;

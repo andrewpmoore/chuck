@@ -26,6 +26,10 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+
+    //get the orientation to determine whether to show a NavigationBar or NavigationRail
+    final orientation = MediaQuery.of(context).orientation;
+
     return Scaffold(
       backgroundColor: context.colorScheme.surface,
       appBar: AppBar(
@@ -44,38 +48,67 @@ class _HomeViewState extends State<HomeView> {
           ),
         ],
       ),
-        bottomNavigationBar: NavigationBar(
-          onDestinationSelected: (int index) {
-            setState(() {
-              //set the current index page and refresh state
-              currentPageIndex = index;
-            });
-          },
-          indicatorColor: context.colorScheme.secondaryContainer,
-          selectedIndex: currentPageIndex,
-          destinations: <Widget>[
-            NavigationDestination(
-              selectedIcon: const Icon(Icons.home),
-              icon: const Icon(Icons.home_outlined),
-              label: context.loc!.home,
-            ),
-            NavigationDestination(
-              icon: const Icon(LucideIcons.search),
-              label: context.loc!.search,
-            ),
-            NavigationDestination(
-              selectedIcon: const Icon(LucideIcons.grid),
-              icon: const Icon(LucideIcons.grid),
-              label: context.loc!.categories,
-            ),
-          ],
-        ),
+      bottomNavigationBar: orientation==Orientation.portrait ? NavigationBar(
+        onDestinationSelected: (int index) {
+          setState(() {
+            //set the current index page and refresh state
+            currentPageIndex = index;
+          });
+        },
+        indicatorColor: context.colorScheme.secondaryContainer,
+        selectedIndex: currentPageIndex,
+        destinations: <Widget>[
+          NavigationDestination(
+            icon: const Icon(Icons.home_outlined),
+            label: context.loc!.home,
+          ),
+          NavigationDestination(
+            icon: const Icon(LucideIcons.search),
+            label: context.loc!.search,
+          ),
+          NavigationDestination(
+            icon: const Icon(LucideIcons.grid),
+            label: context.loc!.categories,
+          ),
+        ],
+      ) : null,
+        body: Row(children: [
+          if (orientation==Orientation.landscape) NavigationRail(
+            selectedIndex: currentPageIndex,
+            // groupAlignment: groupAlignment,
+            onDestinationSelected: (int index) {
+              setState(() {
+                currentPageIndex = index;
+              });
+            },
+            labelType: NavigationRailLabelType.all,
+            destinations: <NavigationRailDestination>[
+              NavigationRailDestination(
+                icon: const Icon(Icons.home_outlined),
+                label: Text(context.loc!.home),
+              ),
+              NavigationRailDestination(
+                icon: const Icon(LucideIcons.search),
+                label: Text(context.loc!.search),
+              ),
+              NavigationRailDestination(
+                icon: const Icon(LucideIcons.grid),
+                label: Text(context.loc!.categories),
+              ),
+            ],
+          ),
+          if (orientation==Orientation.landscape) VerticalDivider(width: 1, color: context.colorScheme.primaryContainer),
+            Expanded(
+            child: IndexedStack(index: currentPageIndex, children: const [
+              RandomJokeScreen(),
+              JokeSearchScreen(),
+              JokeCategoryScreen(),
+            ]),
+          )
 
-      body: IndexedStack(index: currentPageIndex, children: const [
-        RandomJokeScreen(),
-        JokeSearchScreen(),
-        JokeCategoryScreen(),
-      ]),
+        ],),
     );
   }
 }
+
+

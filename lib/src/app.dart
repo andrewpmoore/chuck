@@ -1,6 +1,6 @@
 import 'package:chuck/src/ui/resources/theme/theme.dart';
 import 'package:chuck/src/ui/screens/home/home_view.dart';
-import 'package:chuck/src/ui/screens/settings/settings_controller.dart';
+import 'package:chuck/src/business/settings_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     required this.settingsController,
   });
 
-  final SettingsController settingsController;
+  final SettingsProvider settingsController;
 
   @override
   Widget build(BuildContext context) {

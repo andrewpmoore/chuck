@@ -1,4 +1,5 @@
-import 'package:chuck/src/ui/screens/settings/settings_controller.dart';
+import 'package:chuck/src/ui/resources/ui_extensions/build_context_extension.dart';
+import 'package:chuck/src/business/settings_provider.dart';
 import 'package:flutter/material.dart';
 
 
@@ -11,11 +12,12 @@ class SettingsView extends StatelessWidget {
 
   static const routeName = '/settings';
 
-  final SettingsController controller;
+  final SettingsProvider controller;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: context.colorScheme.surface,
       appBar: AppBar(
         title: const Text('Settings'),
       ),
