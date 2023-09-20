@@ -48,10 +48,10 @@ class JokeProvider extends ChangeNotifier {
     //now check the types to determine the fake joke to show
     if ((exception is DioException) && (exception).error is SocketException) {
       //set a fake joke due to not having a connection
-      joke = Joke(value: "It's not Chuck Norris, it's you! Chuck never fails", isFake: true);
+      joke = Joke(value: "It's not Chuck Norris, it's you! Chuck never fails", isFake: true); //todo for internationalisation, this should ideally return a code which the UI then uses to display the text
     } else {
       //set a fake joke due to the api call not working
-      joke = Joke(value: 'There seems to have been a system failure, Chuck Norris dares you to try again!', isFake: true);
+      joke = Joke(value: 'There seems to have been a system failure, Chuck Norris dares you to try again!', isFake: true); //todo for internationalisation, this should ideally return a code which the UI then uses to display the text
     }
   }
 }
