@@ -41,7 +41,7 @@ class CategoryProvider extends ChangeNotifier {
   _handleFailure(Exception exception) {
     //todo for a real app would need to consider how to report that there's failures, maybe crashlytics or to an analytics package
     //print('error exception type: $exception');
-    errorMessage = 'Unable to obtain categories, try again later';
+    errorMessage = 'Unable to obtain categories, try again later'; //todo for internationalisation, this should ideally return a code which the UI then uses to display the text
   }
 
 
