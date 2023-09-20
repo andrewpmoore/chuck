@@ -75,6 +75,6 @@ class SearchProvider extends ChangeNotifier {
   _handleFailure(Exception exception) {
     //todo for a real app would need to consider how to report that there's failures, maybe crashlytics or to an analytics package
     //print('error exception type: $exception');
-    errorMessage = 'Unable to perform a search at this time, try again later';
+    errorMessage = 'Unable to perform a search at this time, try again later'; //todo for internationalisation, this should ideally return a code which the UI then uses to display the text
   }
 }
